@@ -11,6 +11,7 @@ Una SPA simple y prolija para organizar tareas del día a día, hecha con HTML, 
 - **Tracker de hidratación**: 4 botellitas de agua y 2 cafés para marcar "ya lo tomé", con animación y reinicio automático cada día.
 - **Diseño responsivo de una sola pantalla**: no hay scroll general, solo la lista de tareas scrollea internamente.
 - **Paleta verde musgo/pantano** 🌿
+- **PWA instalable**: manifest + service worker, funciona offline y se puede agregar a la pantalla de inicio (probado en iPhone).
 
 Todo se persiste en el `localStorage` del navegador, no requiere backend ni conexión.
 
@@ -21,6 +22,20 @@ npx serve -l 5173 .
 ```
 
 Y abrís [http://localhost:5173](http://localhost:5173).
+
+## Deploy en Vercel
+
+Es un sitio estático, no necesita configuración de build (framework preset: "Other"). El `vercel.json` ya incluido define los headers correctos para el manifest y el service worker.
+
+1. Importá el repo en [vercel.com/new](https://vercel.com/new).
+2. Dejá Build Command y Output Directory vacíos (o `Other`).
+3. Deploy.
+
+## Instalar como app en iPhone
+
+1. Abrí el sitio en Safari.
+2. Compartir → **Agregar a pantalla de inicio**.
+3. Se abre en pantalla completa, con ícono propio y sin scroll de más (respeta el notch y el home indicator).
 
 ## Stack
 
