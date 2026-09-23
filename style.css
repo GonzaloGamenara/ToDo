@@ -224,7 +224,7 @@ body {
   color: var(--text-main);
   outline: none;
   cursor: pointer;
-  max-width: 112px;
+  max-width: 128px;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.3s ease;
 }
 .category-select:focus {

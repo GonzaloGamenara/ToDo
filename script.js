@@ -6,8 +6,13 @@ const STREAK_KEY = 'todo-spa-streak';
 const CATEGORIES = {
   personal: { label: 'Personal', color: '#6f9457' },
   trabajo: { label: 'Trabajo', color: '#4f8a7c' },
+  estudio: { label: 'Estudio', color: '#5c7a9c' },
   compras: { label: 'Compras', color: '#c08a3e' },
+  finanzas: { label: 'Finanzas', color: '#6b7a4a' },
+  hogar: { label: 'Hogar', color: '#8a6a4a' },
   salud: { label: 'Salud', color: '#a1584f' },
+  mascotas: { label: 'Mascotas', color: '#c17a4a' },
+  ocio: { label: 'Ocio', color: '#b06a8a' },
   otro: { label: 'Otro', color: '#9c9873' },
 };
 

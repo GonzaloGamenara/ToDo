@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-lista-v3';
+const CACHE_NAME = 'mi-lista-v4';
 const APP_SHELL = [
   '/',
   '/index.html',
