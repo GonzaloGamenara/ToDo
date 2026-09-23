@@ -277,6 +277,18 @@ body {
   flex-shrink: 0;
 }
 
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.streak-badge[hidden] { display: none; }
+
 .tracker-item {
   position: relative;
   flex-shrink: 0;
@@ -315,23 +327,39 @@ body {
   100% { transform: scale(1) rotate(0); }
 }
 
-.tracker-particle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.burst-particle {
+  position: fixed;
   width: 5px;
   height: 5px;
-  margin: -2.5px;
+  margin: -2.5px 0 0 -2.5px;
   border-radius: 50%;
-  background: var(--tracker-color);
   pointer-events: none;
-  animation: tracker-burst 0.55s ease-out forwards;
+  z-index: 60;
+  animation: burst-out 0.55s ease-out forwards;
 }
 
-@keyframes tracker-burst {
+@keyframes burst-out {
   to {
     transform: translate(var(--dx), var(--dy)) scale(0);
     opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  top: -12px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 70;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(var(--rot));
+    opacity: 0.25;
   }
 }
 
@@ -405,6 +433,46 @@ body {
 .todo-list::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 4px; }
 
 .todo-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: pop-in 0.22s ease;
+  flex-shrink: 0;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.swipe-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border-radius: 12px;
+  background: var(--item-bg);
+}
+.swipe-icon {
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.todo-item.swipe-right .swipe-bg {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+.todo-item.swipe-right .swipe-complete { opacity: 1; }
+.todo-item.swipe-left .swipe-bg {
+  background: var(--danger);
+}
+.todo-item.swipe-left .swipe-delete { opacity: 1; }
+
+.todo-item-row {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -412,14 +480,9 @@ body {
   border: 1px solid var(--item-border);
   border-radius: 12px;
   padding: 12px 12px;
-  animation: pop-in 0.22s ease;
   transition: background 0.3s ease, border-color 0.3s ease;
-  flex-shrink: 0;
-}
-
-@keyframes pop-in {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  touch-action: pan-y;
+  user-select: none;
 }
 
 .checkbox {
